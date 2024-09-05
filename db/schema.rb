@@ -16,21 +16,23 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_01_005146) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
-    t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "products", force: :cascade do |t|
     t.string "title"
-    t.decimal "price"
+    t.string "image"
+    t.decimal "price", precision: 10, scale: 2
     t.text "description"
-    t.bigint "category_id", null: false
-    t.string "images", default: [], array: true
+    t.string "brand"
+    t.string "model"
+    t.string "color"
+    t.string "category"
+    t.boolean "popular", default: false
+    t.boolean "on_sale", default: false
+    t.integer "discount", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["category_id"], name: "index_products_on_category_id"
   end
-
-  add_foreign_key "products", "categories"
 end
